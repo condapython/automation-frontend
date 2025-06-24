@@ -1,4 +1,5 @@
-import { Bot, Linkedin, Twitter, Github, Mail, Phone, Calendar } from "lucide-react";
+import { Bot, Linkedin, Github, Mail, Phone, Calendar } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 
 export default function Footer() {
@@ -38,9 +39,10 @@ export default function Footer() {
               <Button
                 variant="outline"
                 size="icon"
-                className="hover:bg-blue-400 hover:border-blue-400 transition-colors"
+                className="hover:bg-green-500 hover:border-green-500 transition-colors"
+                onClick={() => window.open("https://wa.me/14372434197", "_blank")}
               >
-                <Twitter size={18} />
+                <SiWhatsapp size={18} />
               </Button>
               <Button
                 variant="outline"
