@@ -20,7 +20,7 @@ The application follows a monorepo structure with clear separation between clien
 **Backend Architecture:**
 - Express.js server with TypeScript
 - RESTful API endpoints for business logic
-- Memory storage with interface for easy database migration
+- PostgreSQL database with Drizzle ORM for persistent data storage
 - Session-based request logging and error handling
 
 **Database Architecture:**
@@ -108,6 +108,7 @@ The application is configured for deployment on Replit with the following setup:
 - June 24, 2025: Changed contact email from hello@0to1automation.com and support@0to1automation.com to dascam099@gmail.com
 - June 24, 2025: Updated phone number from +1 (555) 123-4567 to +1 (437) 243-4197
 - June 24, 2025: Replaced Twitter social media button with WhatsApp button in footer
+- June 24, 2025: Integrated PostgreSQL database with full CRUD operations replacing memory storage
 
 ## Changelog
 

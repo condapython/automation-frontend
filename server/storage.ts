@@ -12,6 +12,8 @@ import {
   type ChatMessage,
   type InsertChatMessage
 } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -141,4 +143,69 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export class DatabaseStorage implements IStorage {
+  async getUser(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(insertUser)
+      .returning();
+    return user;
+  }
+
+  async createContact(insertContact: InsertContact): Promise<Contact> {
+    const [contact] = await db
+      .insert(contacts)
+      .values(insertContact)
+      .returning();
+    return contact;
+  }
+
+  async getContacts(): Promise<Contact[]> {
+    return await db.select().from(contacts);
+  }
+
+  async subscribeNewsletter(insertNewsletter: InsertNewsletter): Promise<Newsletter> {
+    const [newsletter] = await db
+      .insert(newsletters)
+      .values(insertNewsletter)
+      .returning();
+    return newsletter;
+  }
+
+  async getNewsletterSubscribers(): Promise<Newsletter[]> {
+    return await db.select().from(newsletters);
+  }
+
+  async createChatMessage(insertMessage: InsertChatMessage): Promise<ChatMessage> {
+    const [message] = await db
+      .insert(chatMessages)
+      .values(insertMessage)
+      .returning();
+    return message;
+  }
+
+  async getChatMessages(sessionId: string): Promise<ChatMessage[]> {
+    return await db.select().from(chatMessages).where(eq(chatMessages.sessionId, sessionId));
+  }
+
+  async updateChatMessageResponse(id: number, response: string): Promise<ChatMessage | undefined> {
+    const [message] = await db
+      .update(chatMessages)
+      .set({ response })
+      .where(eq(chatMessages.id, id))
+      .returning();
+    return message || undefined;
+  }
+}
+
+export const storage = new DatabaseStorage();
