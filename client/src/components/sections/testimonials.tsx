@@ -5,23 +5,23 @@ import GlassEffect from "@/components/ui/glass-effect";
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
+    name: "Vivek Patel",
     title: "CEO, TechFlow Solutions",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100",
     content: "0to1 Automation transformed our customer service with their AI chatbot. We've seen a 60% reduction in support tickets and 40% increase in customer satisfaction.",
     rating: 5,
   },
   {
-    name: "Maria Rodriguez",
+    name: "Maria Mecwan",
     title: "Marketing Director, Design Studio Pro",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b17c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100",
+    image: "https://images.unsplash.com/photo-1494790108755-2616b612b17c?ixlib=rb-4.0.3&ixid=MnwxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100",
     content: "The 3D website they built for us is absolutely stunning. Our conversion rate increased by 85% and we're getting inquiries from clients we never could have reached before.",
     rating: 5,
   },
   {
-    name: "David Chen",
+    name: "Tanish Thakur",
     title: "Founder, Growth Ventures",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100",
     content: "Their email automation sequences are incredible. We've doubled our revenue in just 6 months with their personalized campaign strategies.",
     rating: 5,
   },

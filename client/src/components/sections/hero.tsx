@@ -128,28 +128,7 @@ export default function Hero() {
             </Button>
           </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            variants={containerVariants}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16"
-          >
-            <motion.div variants={itemVariants} className="fade-in-up">
-              <div className="text-3xl font-bold text-blue-400">500+</div>
-              <div className="text-muted-foreground">Clients Automated</div>
-            </motion.div>
-            <motion.div variants={itemVariants} className="fade-in-up">
-              <div className="text-3xl font-bold text-purple-400">300%</div>
-              <div className="text-muted-foreground">Average Growth</div>
-            </motion.div>
-            <motion.div variants={itemVariants} className="fade-in-up">
-              <div className="text-3xl font-bold text-emerald-400">$2M+</div>
-              <div className="text-muted-foreground">Cost Savings</div>
-            </motion.div>
-            <motion.div variants={itemVariants} className="fade-in-up">
-              <div className="text-3xl font-bold text-pink-400">99%</div>
-              <div className="text-muted-foreground">Satisfaction Rate</div>
-            </motion.div>
-          </motion.div>
+
         </motion.div>
       </div>
     </section>
