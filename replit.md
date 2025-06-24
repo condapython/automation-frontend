@@ -101,6 +101,12 @@ The application is configured for deployment on Replit with the following setup:
 - Environment variable configuration for database URL
 - Fallback to memory storage during development
 
+## Recent Changes
+
+- June 24, 2025: Removed stats section from hero area for cleaner design
+- June 24, 2025: Updated testimonial names to Vivek Patel, Maria Mecwan, and Tanish Thakur
+- June 24, 2025: Changed contact email from hello@0to1automation.com and support@0to1automation.com to dascam099@gmail.com
+
 ## Changelog
 
 - June 24, 2025. Initial setup
