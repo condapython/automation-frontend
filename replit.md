@@ -106,6 +106,7 @@ The application is configured for deployment on Replit with the following setup:
 - June 24, 2025: Removed stats section from hero area for cleaner design
 - June 24, 2025: Updated testimonial names to Vivek Patel, Maria Mecwan, and Tanish Thakur
 - June 24, 2025: Changed contact email from hello@0to1automation.com and support@0to1automation.com to dascam099@gmail.com
+- June 24, 2025: Updated phone number from +1 (555) 123-4567 to +1 (437) 243-4197
 
 ## Changelog
 

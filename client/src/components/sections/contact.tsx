@@ -280,7 +280,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-bold mb-1">Call Us</h4>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                    <p className="text-muted-foreground">+1 (437) 243-4197</p>
                     <p className="text-sm text-muted-foreground">Mon-Fri 9AM-6PM EST</p>
                   </div>
                 </div>
