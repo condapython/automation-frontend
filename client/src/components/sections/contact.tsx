@@ -10,7 +10,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
 import { Mail, Phone, Calendar, CheckCircle2 } from "lucide-react";
 import GlassEffect from "@/components/ui/glass-effect";
 
@@ -43,7 +42,16 @@ export default function Contact() {
 
   const contactMutation = useMutation({
     mutationFn: async (data: ContactFormData) => {
-      return await apiRequest("POST", "/api/contacts", data);
+      // Changed endpoint to "/submit" as requested
+      const response = await fetch("http://localhost:3000/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
     },
     onSuccess: () => {
       toast({
@@ -275,51 +283,38 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 btn-gradient-secondary rounded-lg flex items-center justify-center">
+                  <div className="w-12 h-12 btn-gradient-primary rounded-lg flex items-center justify-center">
                     <Phone className="text-white" size={18} />
                   </div>
                   <div>
                     <h4 className="font-bold mb-1">Call Us</h4>
                     <p className="text-muted-foreground">+1 (437) 243-4197</p>
-                    <p className="text-sm text-muted-foreground">Mon-Fri 9AM-6PM EST</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 btn-gradient-accent rounded-lg flex items-center justify-center">
+                  <div className="w-12 h-12 btn-gradient-primary rounded-lg flex items-center justify-center">
                     <Calendar className="text-white" size={18} />
                   </div>
                   <div>
-                    <h4 className="font-bold mb-1">Book a Meeting</h4>
-                    <p className="text-muted-foreground">Schedule a 30-minute strategy session</p>
-                    <Button
-                      variant="link"
-                      className="text-purple-400 hover:text-purple-300 pl-0 mt-1"
-                    >
-                      View Available Times →
-                    </Button>
+                    <h4 className="font-bold mb-1">Business Hours</h4>
+                    <p className="text-muted-foreground">Mon-Fri: 9am - 6pm</p>
                   </div>
                 </div>
               </div>
             </GlassEffect>
 
-            {/* FAQ Section */}
             <GlassEffect className="rounded-xl p-8">
-              <h3 className="text-2xl font-bold mb-6">Frequently Asked Questions</h3>
-
+              <h3 className="text-2xl font-bold mb-6">FAQs</h3>
               <div className="space-y-4">
-                {faqItems.map((item, index) => (
+                {faqItems.map(({ question, answer, color }) => (
                   <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
+                    key={question}
+                    className="p-4 border border-border rounded-lg cursor-pointer hover:bg-muted"
+                    whileHover={{ scale: 1.02 }}
                   >
-                    <h4 className={`font-bold ${item.color} mb-2`}>
-                      {item.question}
-                    </h4>
-                    <p className="text-muted-foreground text-sm">{item.answer}</p>
+                    <h4 className={`font-semibold mb-2 ${color}`}>{question}</h4>
+                    <p className="text-muted-foreground">{answer}</p>
                   </motion.div>
                 ))}
               </div>
