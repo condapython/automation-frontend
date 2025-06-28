@@ -1,38 +1,38 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-// FIX: Use require for nodemailer to avoid import issues in CommonJS/TypeScript setups
 const nodemailer = require('nodemailer');
 // import { saveLead } from './excel'; // <-- Disabled for now
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT ?? 3000;   // <-- use the port Render injects
 
-// Allow requests from your frontend (update the port if needed)
-app.use(cors({
-  origin: 'http://localhost:5173'  // This must match the address of your frontend
-}));
+app.use(
+  cors({
+    origin: process.env.CLIENT_ORIGIN ?? '*', // allow your prod URL
+  }),
+);
 app.use(bodyParser.json());
 
+// put secrets in env vars – NEVER commit them
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+});
+
 app.post('/submit', async (req, res) => {
-  console.log("Received data:", req.body); // ✅ Shows data in Terminal
+  console.log("Received data:", req.body);
 
   try {
     // saveLead(req.body);  // This saves to Excel (temporarily disabled)
 
-    // --- Email sending logic ---
     const { firstName, lastName, email, company, service, message } = req.body;
 
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'dascam099@gmail.com', // <-- your Gmail
-        pass: 'izqz ycaq cldm dhyk', // <-- your Gmail App Password
-      },
-    });
-
     const mailOptions = {
-      from: '"Website Contact" <dascam099@gmail.com>',
+      from: `"Website Contact" <${process.env.GMAIL_USER}>`,
       to: ['dascam099@gmail.com', 'neerajkaushikkhandra181@gmail.com'],
       subject: 'New Contact Form Submission',
       html: `
